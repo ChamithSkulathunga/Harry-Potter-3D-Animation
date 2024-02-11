@@ -4,67 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harry-Potter-Animation</title>
-    <style>
-        *{
-            margin: 0;
-            --view-angle: 1000;
-        }
-
-        .outer-div{
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            align-items: center;
-            background-color: #000;
-            flex-wrap: wrap;
-           
-        }
-
-        .box{
-            width: 400px;
-            height: 220px;
-            /* outline: 1px solid red; */
-            position: relative;
-            transform-style: preserve-3d;
-
-            /* transform: rotateY(35deg); */
-
-            animation: animate 20s linear infinite;
-        }
-
-        .box span img{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            top: 0;
-            left: 0;
-        }
-
-        .box span{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;    /*span eke absolute krma image ek nathi wenwa, span ek athule ne image ek thiynne e nisa image ekta adala size denna ona, ethkota image ek display wenwa*/
-            /* transform: rotateX(calc(var(--i) * 45deg)) translateZ(300px) rotateY(20deg) ; */
-            transform: rotateX(calc(var(--i) * 45deg)) translateZ(300px) ;
-        }
-
-        @keyframes animate{
-            0%{
-                transform:perspective(calc(var(--view-angle) * 1px)) rotateX(0deg) rotateY(35deg) ;
-            }
-            100%{
-                transform:perspective(calc(var(--view-angle) * 1px)) rotateX(360deg) rotateY(35deg);
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h2 id="MovieTitle">
+        Harry Potter
+    </h2>
     <div class="outer-div">
-        <div class="box">
+        <div class="box" id="ImageContainer">
+            <h1 class="main-text">Harry Potter</h1>
             <span style="--i: 1">
                 <img src="01_Harry_Potter_and_the_Philosopher's_Stone_banner.jpeg" alt="">
             </span>
@@ -98,5 +46,38 @@
             </span>
         </div>
     </div>
+
+    <script>
+
+        const movieList = [
+            "Sorcerer's Stone",
+            "Chamber of Secrets",
+            "Prisoner of Azkaban",
+            "Goblet of Fire",
+            "Order of the Phoenix ",
+            " Half-Blood Prince",
+            "Deathly Hallows – Part 1",
+            "Deathly Hallows – Part 2"
+        ];
+
+        var container = document.getElementById("ImageContainer");
+        var MovieTitle = document.getElementById("MovieTitle");
+
+        container.addEventListener('mouseover', function (event) {
+            if(event.target.tagName === 'IMG'){
+               var iValue = window.getComputedStyle(event.target.parentNode)
+               .getPropertyValue('--i');
+            //    console.log(iValue);
+
+            MovieTitle.innerText = 'Harry Potter ' + movieList[iValue -1];
+
+            }
+        });
+
+        container.addEventListener('mouseout', function (){
+            MovieTitle.innerText = 'Harry Potter ';
+        })
+
+    </script>
 </body>
 </html>
