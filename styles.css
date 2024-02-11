@@ -74,7 +74,7 @@ body{
 }
 
 .main-text{
-    font-size: 150px ;
+    font-size: 100px ;
     color: gold;
     font-family: myFirstFont;
     align-items: center;
@@ -86,7 +86,9 @@ body{
 
 h2{
     font-size: 40px;
-    color: white;
+    font-family: myFirstFont;
+    
+    color: gold;
     text-align: center;
     margin-top: 40px;
     margin-bottom: 80px;
